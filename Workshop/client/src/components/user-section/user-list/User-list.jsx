@@ -1,7 +1,7 @@
 import Thead from "../Thead"
 import UserListItem from "./user-list-item/User-list-item"
 
-export default function UserList({ users, onDelete, showDetails }) {
+export default function UserList({ users, onDeleteClick, showDetails }) {
 
     return (
         <div className="table-wrapper">
@@ -13,7 +13,7 @@ export default function UserList({ users, onDelete, showDetails }) {
                         <UserListItem
                             key={user._id}
                             user={user}
-                            onDelete={() => onDelete(user._id)}
+                            onDeleteClick={onDeleteClick}
                             showDetails={showDetails}
                         />)}
                 </tbody>

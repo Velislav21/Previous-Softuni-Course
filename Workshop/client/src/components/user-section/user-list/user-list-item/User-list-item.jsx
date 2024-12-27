@@ -1,6 +1,6 @@
 import { dateFormatter } from "../../../../utils/dateFormatter";
 
-export default function UserListItem({ user, onDelete, showDetails }) {
+export default function UserListItem({ user, onDeleteClick, showDetails }) {
     return (
 
         <tr>
@@ -35,7 +35,7 @@ export default function UserListItem({ user, onDelete, showDetails }) {
                         ></path>
                     </svg>
                 </button>
-                <button onClick={onDelete} className="btn delete-btn" title="Delete">
+                <button onClick={() => onDeleteClick(user._id)} className="btn delete-btn" title="Delete">
                     <svg
                         aria-hidden="true"
                         focusable="false"
