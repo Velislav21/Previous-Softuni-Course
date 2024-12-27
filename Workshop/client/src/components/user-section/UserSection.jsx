@@ -1,8 +1,8 @@
-import AddBtn from "./AddBtn";
 import Pagination from "./pagination/Pagination";
 import SearchBar from "../search-bar/SearchBar";
 import UserList from "./user-list/User-list";
 import { useEffect, useState } from "react";
+import UserAdd from "./user-add/UserAdd";
 
 const baseUrl = `http://localhost:3030/jsonstore`;
 
@@ -33,15 +33,19 @@ export default function UserSection() {
         } );
     };
 
-    const showModal = () => {
+    const addUserClickHandler = () => {
         setIsAddUserModalShowing(true);
     };
-    
-    const hideModal = () => {
-        setIsAddUserModalShowing(false);
-    };
+    const hideAddUserModal = () => {
+        setIsAddUserModalShowing(false)
+    }
 
-    return (
+    const addUserHandler = (e) => {
+        e.preventDefault()
+        const formData = new FormData(e.currentTarget)
+        console.log(formData.get('firstName'))
+    }
+    return ( 
         <section className="card users-container">
 
             <SearchBar />
@@ -49,7 +53,9 @@ export default function UserSection() {
                 users={users}
                 onDelete={deleteUser}
             />
-            <AddBtn showModal={showModal} />
+            {isAddUserModalShowing && <UserAdd hideModal={hideAddUserModal} addUserHandler={addUserHandler}/>}
+
+            <button onClick={addUserClickHandler} className="btn-add btn">Add new user</button>
             <Pagination />
 
         </section>

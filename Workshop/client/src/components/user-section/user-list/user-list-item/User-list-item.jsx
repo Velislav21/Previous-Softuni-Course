@@ -1,6 +1,6 @@
 import { dateFormatter } from "../../../../utils/dateFormatter";
 
-export default function UserListItem({firstName, lastName, email, phoneNumber, createdAt, onDelete}) {
+export default function UserListItem({ firstName, lastName, email, phoneNumber, createdAt, onDelete }) {
     return (
 
         <tr>
@@ -71,6 +71,6 @@ export default function UserListItem({firstName, lastName, email, phoneNumber, c
                 </button>
             </td>
         </tr>
-
+        
     )
 }
