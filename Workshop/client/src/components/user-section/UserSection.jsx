@@ -43,7 +43,11 @@ export default function UserSection() {
     const addUserHandler = async (e) => {
         e.preventDefault()
         const formData = new FormData(e.currentTarget)
-        const data = Object.fromEntries(formData);
+        const data = {
+            ...Object.fromEntries(formData),
+            createdAt: new Date().toISOString(),
+            updatedAt: new Date().toISOString(),
+        };
 
         const response = await fetch(`${baseUrl}/users`, {
             method: 'POST',
