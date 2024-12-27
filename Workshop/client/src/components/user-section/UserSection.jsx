@@ -29,8 +29,8 @@ export default function UserSection() {
         });
 
         setUsers((prevUsers) => {
-            [...prevUsers].filter((userId) => userId != id )
-        } );
+            [...prevUsers].filter((userId) => userId != id)
+        });
     };
 
     const addUserClickHandler = () => {
@@ -40,12 +40,25 @@ export default function UserSection() {
         setIsAddUserModalShowing(false)
     }
 
-    const addUserHandler = (e) => {
+    const addUserHandler = async (e) => {
         e.preventDefault()
         const formData = new FormData(e.currentTarget)
-        console.log(formData.get('firstName'))
+        const data = Object.fromEntries(formData);
+
+        const response = await fetch(`${baseUrl}/users`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data)
+        })
+
+        const newUser = await response.json()
+
+        setUsers((prevUsers) => [...prevUsers, newUser]);
+        setIsAddUserModalShowing(false);
     }
-    return ( 
+    return (
         <section className="card users-container">
 
             <SearchBar />
@@ -53,7 +66,7 @@ export default function UserSection() {
                 users={users}
                 onDelete={deleteUser}
             />
-            {isAddUserModalShowing && <UserAdd hideModal={hideAddUserModal} addUserHandler={addUserHandler}/>}
+            {isAddUserModalShowing && <UserAdd hideModal={hideAddUserModal} addUserHandler={addUserHandler} />}
 
             <button onClick={addUserClickHandler} className="btn-add btn">Add new user</button>
             <Pagination />
