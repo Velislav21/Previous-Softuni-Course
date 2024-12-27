@@ -1,4 +1,4 @@
-export default function UserListItem({firstName, lastName, email, phoneNumber, createdAt}) {
+export default function UserListItem({firstName, lastName, email, phoneNumber, createdAt, onDelete}) {
     return (
 
         <tr>
@@ -33,7 +33,7 @@ export default function UserListItem({firstName, lastName, email, phoneNumber, c
                         ></path>
                     </svg>
                 </button>
-                <button className="btn delete-btn" title="Delete">
+                <button onClick={onDelete} className="btn delete-btn" title="Delete">
                     <svg
                         aria-hidden="true"
                         focusable="false"

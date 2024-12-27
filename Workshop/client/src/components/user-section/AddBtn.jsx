@@ -1,7 +1,7 @@
-export default function AddBtn() {
+export default function AddBtn({showModal}) {
     return (
 
-        <button className="btn-add btn">Add new user</button>
+        <button onClick={showModal} className="btn-add btn">Add new user</button>
 
     )
 }

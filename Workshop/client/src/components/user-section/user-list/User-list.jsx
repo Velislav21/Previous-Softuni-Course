@@ -1,7 +1,7 @@
 import Thead from "../Thead"
 import UserListItem from "./user-list-item/User-list-item"
 
-export default function UserList({ users }) {
+export default function UserList({ users, onDelete }) {
 
     return (
         <div className="table-wrapper">
@@ -12,11 +12,8 @@ export default function UserList({ users }) {
                     {users.map(user =>
                         <UserListItem
                             key={user._id}
-                            firstName={user.firstName}
-                            lastName={user.lastName}
-                            phoneNumber={user.phoneNumber}
-                            email={user.email}
-                            createdAt={user.createdAt}
+                            {...user}
+                            onDelete={() => onDelete(user._id)}
                         />)}
                 </tbody>
             </table>

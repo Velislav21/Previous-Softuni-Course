@@ -4,7 +4,7 @@ import SearchBar from "../search-bar/SearchBar";
 import UserList from "./user-list/User-list";
 import { useEffect, useState } from "react"
 
-const baseUrl = `http://localhost:3030/jsonstore/users`
+const baseUrl = `http://localhost:3030/jsonstore`
 
 export default function UserSection() {
 
@@ -13,7 +13,7 @@ export default function UserSection() {
     useEffect(() => {
         (async function getUsers() {
 
-            const response = await fetch(baseUrl)
+            const response = await fetch(`${baseUrl}/users`)
             const result = await response.json();
             const users = Object.values(result)
 
@@ -21,12 +21,30 @@ export default function UserSection() {
         })()
     }, [])
 
+    const deleteUser = async (id) => {
+
+        await fetch(`${baseUrl}/users/${id}`, {
+            method: 'DELETE'
+        })
+
+        setUsers((prevUsers) => {
+            [...prevUsers].filter((userId) => userId != id )
+        } )
+    }
+
+    const showModal = () => {
+        console.log('test')
+    }
+
     return (
         <section className="card users-container">
 
             <SearchBar />
-            <UserList users={users}/>
-            <AddBtn />
+            <UserList
+                users={users}
+                onDelete={deleteUser}
+            />
+            <AddBtn showModal={showModal} />
             <Pagination />
 
         </section>
