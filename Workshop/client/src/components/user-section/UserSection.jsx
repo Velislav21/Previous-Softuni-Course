@@ -3,13 +3,14 @@ import SearchBar from "../search-bar/SearchBar";
 import UserList from "./user-list/User-list";
 import { useEffect, useState } from "react";
 import UserAdd from "./user-add/UserAdd";
-
+import UserDetails from "./user-details/UserDetails";
 const baseUrl = `http://localhost:3030/jsonstore`;
 
 export default function UserSection() {
 
     const [users, setUsers] = useState([]);
     const [isAddUserModalShowing, setIsAddUserModalShowing] = useState(false);
+    const [showUserDetailsById, setShowUserDetailsById] = useState(null);
 
     useEffect(() => {
         (async function getUsers() {
@@ -38,6 +39,13 @@ export default function UserSection() {
     };
     const hideAddUserModal = () => {
         setIsAddUserModalShowing(false)
+    }
+
+    const hideDetails = () => {
+        setShowUserDetailsById(false)
+    }
+    const showDetails = (userId) => {
+        setShowUserDetailsById(userId)
     }
 
     const addUserHandler = async (e) => {
@@ -69,7 +77,15 @@ export default function UserSection() {
             <UserList
                 users={users}
                 onDelete={deleteUser}
+                showDetails={showDetails}
+
             />
+            {showUserDetailsById &&
+                <UserDetails
+                    hideDetails={hideDetails}
+                    user={users.find((user) => user._id === showUserDetailsById)}
+                />}
+
             {isAddUserModalShowing && <UserAdd hideModal={hideAddUserModal} addUserHandler={addUserHandler} />}
 
             <button onClick={addUserClickHandler} className="btn-add btn">Add new user</button>

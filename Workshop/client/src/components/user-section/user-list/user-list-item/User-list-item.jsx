@@ -1,6 +1,6 @@
 import { dateFormatter } from "../../../../utils/dateFormatter";
 
-export default function UserListItem({ firstName, lastName, email, phoneNumber, createdAt, onDelete }) {
+export default function UserListItem({ user, onDelete, showDetails }) {
     return (
 
         <tr>
@@ -11,11 +11,11 @@ export default function UserListItem({ firstName, lastName, email, phoneNumber, 
                     className="image"
                 />
             </td>
-            <td>{firstName}</td>
-            <td>{lastName}</td>
-            <td>{email}</td>
-            <td>{phoneNumber}</td>
-            <td>{dateFormatter(createdAt)}</td>
+            <td>{user.firstName}</td>
+            <td>{user.lastName}</td>
+            <td>{user.email}</td>
+            <td>{user.phoneNumber}</td>
+            <td>{dateFormatter(user.createdAt)}</td>
 
             <td className="actions">
                 <button className="btn edit-btn" title="Edit">
@@ -52,7 +52,7 @@ export default function UserListItem({ firstName, lastName, email, phoneNumber, 
                         ></path>
                     </svg>
                 </button>
-                <button className="btn info-btn" title="Info">
+                <button className="btn info-btn" title="Info" onClick={() => showDetails(user._id)}>
                     <svg
                         aria-hidden="true"
                         focusable="false"
@@ -71,6 +71,6 @@ export default function UserListItem({ firstName, lastName, email, phoneNumber, 
                 </button>
             </td>
         </tr>
-        
+
     )
 }
