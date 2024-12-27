@@ -3,6 +3,7 @@ import './index.css'
 import Header from './components/header/Header'
 import SearchBar from './components/search-bar/SearchBar'
 import UserListContainer from './components/user-list/UserListContainer'
+import Footer from './components/footer/Footer'
 
 function App() {
 
@@ -17,6 +18,7 @@ function App() {
 
                 </section>
             </main>
+            <Footer/>
         </>
     )
 }
