@@ -1,3 +1,5 @@
+import { dateFormatter } from "../../../../utils/dateFormatter";
+
 export default function UserListItem({firstName, lastName, email, phoneNumber, createdAt, onDelete}) {
     return (
 
@@ -13,7 +15,7 @@ export default function UserListItem({firstName, lastName, email, phoneNumber, c
             <td>{lastName}</td>
             <td>{email}</td>
             <td>{phoneNumber}</td>
-            <td>{createdAt}</td>
+            <td>{dateFormatter(createdAt)}</td>
 
             <td className="actions">
                 <button className="btn edit-btn" title="Edit">

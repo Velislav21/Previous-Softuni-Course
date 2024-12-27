@@ -2,13 +2,14 @@ import AddBtn from "./AddBtn";
 import Pagination from "./pagination/Pagination";
 import SearchBar from "../search-bar/SearchBar";
 import UserList from "./user-list/User-list";
-import { useEffect, useState } from "react"
+import { useEffect, useState } from "react";
 
-const baseUrl = `http://localhost:3030/jsonstore`
+const baseUrl = `http://localhost:3030/jsonstore`;
 
 export default function UserSection() {
 
     const [users, setUsers] = useState([]);
+    const [isAddUserModalShowing, setIsAddUserModalShowing] = useState(false);
 
     useEffect(() => {
         (async function getUsers() {
@@ -18,23 +19,27 @@ export default function UserSection() {
             const users = Object.values(result)
 
             setUsers(users)
-        })()
-    }, [])
+        })();
+    }, []);
 
     const deleteUser = async (id) => {
 
         await fetch(`${baseUrl}/users/${id}`, {
             method: 'DELETE'
-        })
+        });
 
         setUsers((prevUsers) => {
             [...prevUsers].filter((userId) => userId != id )
-        } )
-    }
+        } );
+    };
 
     const showModal = () => {
-        console.log('test')
-    }
+        setIsAddUserModalShowing(true);
+    };
+    
+    const hideModal = () => {
+        setIsAddUserModalShowing(false);
+    };
 
     return (
         <section className="card users-container">
@@ -48,5 +53,5 @@ export default function UserSection() {
             <Pagination />
 
         </section>
-    )
-}
+    );
+};
