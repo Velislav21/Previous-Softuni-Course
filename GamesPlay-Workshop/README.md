@@ -5,3 +5,4 @@ SoftUni React Course Project
 - [x] Initialize git repo
 - [x] Add softuni practice server
 - [x] Add base vite react project as client
+- [x] Add project resources
