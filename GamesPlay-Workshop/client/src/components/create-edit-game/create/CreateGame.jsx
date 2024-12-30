@@ -1,5 +1,3 @@
-import '../createEditGame.css'
-
 export default function CreateGame() {
     return (
 

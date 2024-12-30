@@ -1,5 +1,3 @@
-import './games.css'
-
 export default function AllGames() {
     return (
 
