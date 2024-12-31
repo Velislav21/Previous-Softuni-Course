@@ -16,6 +16,10 @@ export default function GameDetails() {
         })()
     }, [])
 
+    const handleDeleteGame = async (gameId) => {
+        await gamesAPI.deleteGame(gameId)
+    }
+
     return (
         <section id="game-details">
             <h1>Game Details</h1>
@@ -47,7 +51,7 @@ export default function GameDetails() {
 
                 <div className="buttons">
                     <Link to={`/games/${gameId}/edit`} className="button">Edit</Link>
-                    <Link t="#" className="button">Delete</Link>
+                    <Link to="/" className="button" onClick={() => handleDeleteGame(gameId)}>Delete</Link>
                 </div>
             </div>
 
