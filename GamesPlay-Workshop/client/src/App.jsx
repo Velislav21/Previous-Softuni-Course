@@ -5,6 +5,8 @@ import Register from './components/user/register/Register'
 import GameCreate from './components/games/create/GameCreate'
 import GamesList from './components/games/GamesList'
 import Home from './components/home/Home'
+import GameDetails from './components/games/GameDetails'
+import GameEdit from './components/games/GameEdit'
 
 function App() {
 
@@ -21,6 +23,8 @@ function App() {
                     <Route path={'/register'} element={<Register />} />
                     <Route path={'/games'} element={<GamesList />} />
                     <Route path={'/games/create'} element={<GameCreate />} />
+                    <Route path={'/games/:gameId/details'} element={<GameDetails/>}/>
+                    <Route path={'/games/:gameId/edit'} element={<GameEdit/>}/>
 
                 </Routes>
             </main>
