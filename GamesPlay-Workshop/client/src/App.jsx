@@ -25,7 +25,6 @@ function App() {
                     <Route path={'/games/create'} element={<GameCreate />} />
                     <Route path={'/games/:gameId/details'} element={<GameDetails/>}/>
                     <Route path={'/games/:gameId/edit'} element={<GameEdit/>}/>
-
                 </Routes>
             </main>
 
