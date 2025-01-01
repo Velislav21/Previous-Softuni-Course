@@ -1,17 +1,19 @@
 import { useState, useEffect } from "react"
-import gamesAPI from "../api/games-api"
+import gamesAPI from "../../api/games-api"
 import LatestGame from "../games/LatestGame";
+import useFetch from "../../hooks/useFetch";
 
 export default function Home() {
 
-    const [latestGames, setLatestGames] = useState([]);
+    // const [latestGames, setLatestGames] = useState([]);
+    // useEffect(() => {
+    //     (async () => {
+    //         const games = await gamesAPI.getAll();
+    //         setLatestGames(games);
+    //     })()
+    // }, [])
 
-    useEffect(() => {
-        (async () => {
-            const games = await gamesAPI.getAll();
-            setLatestGames(games);
-        })()
-    }, [])
+    const latestGames = useFetch([]);
 
     return (
         <section id="welcome-world">

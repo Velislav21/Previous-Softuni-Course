@@ -1,13 +1,12 @@
 import { Link, useParams } from "react-router-dom"
 import { useEffect, useState } from "react"
 
-import gamesAPI from '../api/games-api.js'
+import gamesAPI from '../../api/games-api.js'
 
 export default function GameDetails() {
 
     const [game, setGame] = useState({});
     const { gameId } = useParams();
-
     useEffect(() => {
 
         (async () => {

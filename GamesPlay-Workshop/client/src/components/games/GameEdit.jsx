@@ -1,6 +1,6 @@
 import { useParams, useNavigate } from "react-router-dom"
 import { useState, useEffect } from "react";
-import gamesAPI from "../api/games-api";
+import gamesAPI from "../../api/games-api";
 
 export default function GameEdit() {
 

@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { useNavigate } from "react-router-dom";
-import gamesAPI from "../../api/games-api";
+import gamesAPI from "../../../api/games-api";
 
 
 export default function GameCreate() {
@@ -23,7 +23,7 @@ export default function GameCreate() {
         }))
     }
 
-    const handleCreateGameHandler = async (e) => {
+    const createGameHandler = async (e) => {
 
         e.preventDefault();
         await gamesAPI.createGame(formData);
@@ -33,7 +33,7 @@ export default function GameCreate() {
     return (
 
         <section id="create-page" className="auth">
-            <form id="create">
+            <form id="create" onSubmit={createGameHandler}>
                 <div className="container">
 
                     <h1>Create Game</h1>
@@ -51,7 +51,7 @@ export default function GameCreate() {
 
                     <label htmlFor="summary">Summary:</label>
                     <textarea name="summary" id="summary" onChange={handleChange}></textarea>
-                    <input className="btn submit" type="submit" value="Create Game" onClick={handleCreateGameHandler}/>
+                    <input className="btn submit" type="submit" value="Create Game"/>
                 </div>
             </form>
         </section>
