@@ -1,23 +1,17 @@
-import { useState, useEffect} from "react";
+import { useState, useEffect } from "react";
 
-const baseUrl = 'http://localhost:3030/jsonstore/games'
-export default function useFetch(initialState, params) {
+export default function useFetch(url, initialData) {
 
-    const [data, setData] = useState(initialState, params);
-
+    const [data, setData] = useState(initialData);
     useEffect(() => {
 
         (async () => {
-            const response = await fetch(baseUrl);
+            const response = await fetch(url);
             const data = await response.json();
             setData(data);
         })()
 
     }, [])
 
-    if(initialState.constructor == Array) {
-        return Object.values(data)
-    }
-
-    return data;
+    return { data };
 }
