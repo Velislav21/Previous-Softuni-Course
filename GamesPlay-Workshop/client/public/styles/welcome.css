@@ -138,6 +138,7 @@
 }
 
 .details-btn {
+    border-radius: 15px;
     background-color: #fd5454;
     font-size: 1.4rem;
     padding-top: 20px;

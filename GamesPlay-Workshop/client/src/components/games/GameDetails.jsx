@@ -16,7 +16,7 @@ export default function GameDetails() {
     //     })()
     // }, [])
 
-    const { data: game } = useFetch(`http://localhost:3030/jsonstore/games/${gameId}`,
+    const { data: game } = useFetch('GET',`http://localhost:3030/jsonstore/games/${gameId}`,
         {
             title: '',
             imageUrl: '',

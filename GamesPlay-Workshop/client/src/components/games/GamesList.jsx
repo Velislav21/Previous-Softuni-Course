@@ -5,7 +5,7 @@ import gamesAPI from "../../api/games-api"
 
 export default function GamesList() {
     const [games, setGames] = useState([]);
-     
+
     useEffect(() => {
 
         (async () => {
@@ -17,10 +17,10 @@ export default function GamesList() {
 
         <section id="catalog-page">
             <h1>All Games</h1>
+            {games.length > 0 ?
+                games.map((game) => <GameListItem key={game._id} {...game} />) :
+                <h3 className="no-articles">No articles yet</h3>}
 
-            {games.map((game) => <GameListItem key={game._id} {...game}/>)}
-
-            <h3 className="no-articles">No articles yet</h3>
         </section>
 
     )

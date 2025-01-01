@@ -12,12 +12,12 @@ const getAll = async () => {
 };
 
 const getOne = async (gameId) => {
+    console.log(`${baseUrl}/${gameId}`)
     return await request.get(`${baseUrl}/${gameId}`);
 };
 
 const createGame = async (gameData) => {
     const response = await request.post(`${baseUrl}`, gameData);
-    console.log(response)
     return response;
 };
 

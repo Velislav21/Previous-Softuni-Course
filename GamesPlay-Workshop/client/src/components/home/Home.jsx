@@ -13,7 +13,7 @@ export default function Home() {
     //     })()
     // }, [])
 
-    const { data: games } = useFetch('http://localhost:3030/jsonstore/games', []);
+    const { data: games } = useFetch('GET', 'http://localhost:3030/jsonstore/games', []);
     const latestGames = Object.values(games);
     return (
         <section id="welcome-world">
