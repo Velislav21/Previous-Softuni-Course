@@ -1,30 +1,14 @@
 import { Link, useParams } from "react-router-dom"
-import { useEffect, useState } from "react"
 
 import gamesAPI from '../../api/games-api.js'
-import useFetch from "../../hooks/useFetch.js"
+import { useGetOneGame } from "../../hooks/useGames.js";
 
 export default function GameDetails() {
 
-    // const [game, setGame] = useState({});
     const { gameId } = useParams();
-    // useEffect(() => {
 
-    //     (async () => {
-    //         const game = await gamesAPI.getOne(gameId);
-    //         setGame(game);
-    //     })()
-    // }, [])
+    const [game] = useGetOneGame(gameId)
 
-    const { data: game } = useFetch('GET',`http://localhost:3030/jsonstore/games/${gameId}`,
-        {
-            title: '',
-            imageUrl: '',
-            levels: '',
-            category: '',
-            summary: '',
-        }
-    )
     const handleDeleteGame = async (gameId) => {
         await gamesAPI.deleteGame(gameId)
     }

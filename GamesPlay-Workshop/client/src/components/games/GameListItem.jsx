@@ -11,4 +11,4 @@ export default function GameListItem({imageUrl, category, title, _id}) {
             </div>
         </div>
     )
-}
+} 

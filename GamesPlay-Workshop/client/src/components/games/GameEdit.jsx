@@ -1,7 +1,6 @@
 import { useParams, useNavigate } from "react-router-dom"
 import { useState, useEffect } from "react";
 import gamesAPI from "../../api/games-api";
-import useFetch from "../../hooks/useFetch";
 
 export default function GameEdit() {
 
@@ -16,7 +15,6 @@ export default function GameEdit() {
         summary: ''
     });
 
-    // const { data: game } = useFetch('GET', `http://localhost:3030/jsonstore/games/${gameId}`, {})
     useEffect(() => {
 
         (async () => {

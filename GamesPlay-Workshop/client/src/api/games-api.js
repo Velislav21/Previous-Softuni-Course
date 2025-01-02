@@ -1,5 +1,5 @@
 import * as request from './requester.js';
-import { useNavigate } from 'react-router-dom';
+
 const baseUrl = 'http://localhost:3030/jsonstore/games';
 
 
@@ -12,7 +12,6 @@ const getAll = async () => {
 };
 
 const getOne = async (gameId) => {
-    console.log(`${baseUrl}/${gameId}`)
     return await request.get(`${baseUrl}/${gameId}`);
 };
 

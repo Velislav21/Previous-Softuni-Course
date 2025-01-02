@@ -1,20 +1,10 @@
-import { useState, useEffect } from "react"
-import gamesAPI from "../../api/games-api"
 import LatestGame from "../games/LatestGame";
-import useFetch from "../../hooks/useFetch";
+import { useGetAllGames } from '../../hooks/useGames'
 
 export default function Home() {
 
-    // const [latestGames, setLatestGames] = useState([]);
-    // useEffect(() => {
-    //     (async () => {
-    //         const games = await gamesAPI.getAll();
-    //         setLatestGames(games);
-    //     })()
-    // }, [])
+    const [games] = useGetAllGames();
 
-    const { data: games } = useFetch('GET', 'http://localhost:3030/jsonstore/games', []);
-    const latestGames = Object.values(games);
     return (
         <section id="welcome-world">
 
@@ -26,11 +16,8 @@ export default function Home() {
 
             <div id="home-page">
                 <h1>Latest Games</h1>
-                {latestGames.length > 0 ?
-                    latestGames.map(game => <LatestGame key={game._id} {...game} />)
-                    :
-                    <p className="no-articles">No games yet</p>
-                }
+                {games.map(game => <LatestGame key={game._id} {...game} />)}
+                <p className="no-articles">No games yet</p>
             </div>
         </section>
     )
