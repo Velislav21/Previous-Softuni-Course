@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-export default function Login() {
+export default function Register() {
     return (
 
         <section id="register-page" className="content auth">
