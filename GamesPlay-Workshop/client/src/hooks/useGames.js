@@ -36,7 +36,7 @@ export function useGetOneGame(gameId) {
 
 export function useCreateGame() {
 
-    const createGameHandler = async (formData) => await gamesAPI.createGame(formData);
+    const createGame = (values) => gamesAPI.createGame(values);
 
-    return createGameHandler
+    return createGame
 }

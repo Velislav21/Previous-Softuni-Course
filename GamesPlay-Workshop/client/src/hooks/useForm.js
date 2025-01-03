@@ -1,25 +1,29 @@
 import { useState } from "react";
 
-export default function useForm(initialData) {
+export default function useForm(initialValues, submitCallback) {
 
-    const [formData, setFormData] = useState(initialData)  
+    const [values, setValues] = useState(initialValues)  
 
-    const handleChange = (e) => {
+    const changeHandler = (e) => {
+
         const { name, value } = e.target;
-        setFormData((prevFormData) => ({
-            ...prevFormData,
+        
+        // ! add support for checkboxes !!
+        setValues((preValues) => ({
+            ...preValues,
             [name]: value
         }))
     }
 
     const submitHandler = (e) => {
-        e.preventDefaul();
+        e.preventDefault();
 
+        submitCallback(values)
     }
 
     return {
-        handleChange,
+        values,
+        changeHandler,
         submitHandler,
-        formData
     }
 }
