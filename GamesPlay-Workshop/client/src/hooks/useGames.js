@@ -38,5 +38,11 @@ export function useCreateGame() {
 
     const createGame = (values) => gamesAPI.createGame(values);
 
-    return createGame
+    return createGame;
+}
+
+export function useEditGame() {
+    const editGame = (values) => gamesAPI.updateGame(values);
+
+    return editGame;
 }
