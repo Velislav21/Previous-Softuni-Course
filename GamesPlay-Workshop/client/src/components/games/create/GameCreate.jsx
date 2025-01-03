@@ -1,39 +1,45 @@
 import { useState } from "react"
 import { useNavigate } from "react-router-dom";
 import gamesAPI from "../../../api/games-api";
+import { useCreateGame } from "../../../hooks/useGames";
+import useForm from "../../../hooks/useForm";
 
 
 export default function GameCreate() {
 
-    const [formData, setFormData] = useState({
+    const navigate = useNavigate();
+
+    const { handleChange, formData } = useForm({
         title: "",
         category: "",
         levels: "",
         imageUrl: "",
         summary: ""
-    })  
+    });
+    // const [formData, setFormData] = useState({
+    //     title: "",
+    //     category: "",
+    //     levels: "",
+    //     imageUrl: "",
+    //     summary: ""
+    // })  
 
-    const navigate = useNavigate();
 
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData((prevFormData) => ({
-            ...prevFormData,
-            [name]: value
-        }))
-    }
+    // const handleChange = (e) => {
+    //     const { name, value } = e.target;
+    //     setFormData((prevFormData) => ({
+    //         ...prevFormData,
+    //         [name]: value
+    //     }))
+    // }
 
-    const createGameHandler = async (e) => {
+    const createGameHandler = useCreateGame()
 
-        e.preventDefault();
-        await gamesAPI.createGame(formData);
-        navigate('/')    
-    }   
 
     return (
 
         <section id="create-page" className="auth">
-            <form id="create" onSubmit={createGameHandler}>
+            <form id="create" onSubmit={() => createGameHandler(formData)}>
                 <div className="container">
 
                     <h1>Create Game</h1>
@@ -51,7 +57,7 @@ export default function GameCreate() {
 
                     <label htmlFor="summary">Summary:</label>
                     <textarea name="summary" id="summary" onChange={handleChange}></textarea>
-                    <input className="btn submit" type="submit" value="Create Game"/>
+                    <input className="btn submit" type="submit" value="Create Game" />
                 </div>
             </form>
         </section>

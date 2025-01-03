@@ -1,5 +1,8 @@
+import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import gamesAPI from "../api/games-api";
+
+
 
 export function useGetAllGames() {
 
@@ -7,7 +10,7 @@ export function useGetAllGames() {
 
     useEffect(() => {
 
-        (async () => { 
+        (async () => {
             const games = await gamesAPI.getAll()
             setGames(games)
         })()
@@ -22,11 +25,18 @@ export function useGetOneGame(gameId) {
 
     useEffect(() => {
 
-        (async () => { 
+        (async () => {
             const game = await gamesAPI.getOne(gameId)
             setGame(game)
         })()
     }, [gameId])
 
     return [game, setGame];
+}
+
+export function useCreateGame() {
+
+    const createGameHandler = async (formData) => await gamesAPI.createGame(formData);
+
+    return createGameHandler
 }

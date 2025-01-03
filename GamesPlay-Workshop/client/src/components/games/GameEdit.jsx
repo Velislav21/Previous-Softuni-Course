@@ -36,7 +36,7 @@ export default function GameEdit() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        await gamesAPI.updateGame(gameId, game)
+        await gamesAPI.updateGame(gameId, inputs)
         navigate('/')
     }
 

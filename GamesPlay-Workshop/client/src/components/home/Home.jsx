@@ -16,8 +16,10 @@ export default function Home() {
 
             <div id="home-page">
                 <h1>Latest Games</h1>
-                {games.map(game => <LatestGame key={game._id} {...game} />)}
-                <p className="no-articles">No games yet</p>
+                {games.length > 0 ?
+                    games.map(game => <LatestGame key={game._id} {...game} />)
+                    :
+                    <p className="no-articles">No games yet</p>}
             </div>
         </section>
     )
