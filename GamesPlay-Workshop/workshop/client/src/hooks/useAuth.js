@@ -7,10 +7,8 @@ export const useLogin = () => {
     const { changeAuthState } = useContext(AuthContext);
 
     const loginHandler = async (email, password) => {
-        console.log(email, password)
         const { password: _, ...authData } = await login(email, password);
 
-        console.log(authData)
         changeAuthState(authData);
 
         return authData;

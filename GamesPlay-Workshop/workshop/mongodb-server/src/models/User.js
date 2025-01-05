@@ -16,13 +16,12 @@ const userSchema = new Schema({
 })
 
 userSchema.pre('save', async function () {
-    console.log('test')
     const hash = await bcrypt.hash(this.password, SALT_ROUNDS);
     // !It's a BAIT! withouit awaiting it, it won't hash the password in the db
 
     this.password = hash;
 })
-
+ 
 const User = model('User', userSchema)
 
 export default User;

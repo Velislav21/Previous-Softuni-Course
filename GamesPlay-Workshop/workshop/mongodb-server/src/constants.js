@@ -1,2 +1,2 @@
-export const AUTH_COOKIE_NAME = 'auth'
+export const AUTH_TOKEN_NAME = 'auth'
 export const SALT_ROUNDS = 10;
