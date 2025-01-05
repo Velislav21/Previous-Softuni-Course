@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Route, Routes } from 'react-router-dom'
 
-import { AuthContext } from './contexts/authContext'
+import { AuthContextProvider } from './contexts/authContext'
 import Header from './components/header/Header'
 import Login from './components/user/login/Login'
 import Register from './components/user/register/Register'
@@ -13,23 +13,23 @@ import GameEdit from './components/games/GameEdit'
 
 function App() {
 
-    const [authState, setAuthState] = useState({})
+    // const [authState, setAuthState] = useState({})
 
-    const changeAuthState = (state) => {
-        localStorage.setItem('accessToken', state.accessToken)
-        setAuthState(state)
-    };
+    // const changeAuthState = (state) => {
+    //     localStorage.setItem('accessToken', state.accessToken)
+    //     setAuthState(state)
+    // };
 
-    const contextData = {
-        _id: authState._id,
-        email: authState.email,
-        accessToken: authState.accessToken,
-        isAuthenticated: !!authState.email,
-        changeAuthState
-    }
+    // const contextData = {
+    //     _id: authState._id,
+    //     email: authState.email,
+    //     accessToken: authState.accessToken,
+    //     isAuthenticated: !!authState.email,
+    //     changeAuthState
+    // }
 
     return (
-        <AuthContext.Provider value={contextData}>
+        <AuthContextProvider>
             <div id="box">
 
                 <Header />
@@ -47,7 +47,7 @@ function App() {
                 </main>
 
             </div>
-        </AuthContext.Provider>
+        </AuthContextProvider>
     )
 }
 
