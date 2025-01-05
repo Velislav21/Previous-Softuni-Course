@@ -5,10 +5,10 @@ import getError from "../utils/error.js";
 const userController = Router();
 
 userController.post('/register', async (req, res) => {
-    const { name, email, password, rePassword } = req.body;
+    const {email, password, rePassword } = req.body;
 
     try {
-        const response = await userService.register(name, email, password, rePassword);
+        const response = await userService.register( email, password, rePassword);
         res.cookie(AUTH_COOKIE_NAME, response.accessToken, { httpOnly: true, sameSite: 'none', secure: true })
         res.status(200).json(response)
 

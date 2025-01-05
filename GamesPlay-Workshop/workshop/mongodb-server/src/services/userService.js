@@ -3,9 +3,9 @@ import jwt from '../jwt.js';
 import User from '../models/User.js'
 
 const userService = {
-    async register(name, email, password, rePassword) {
+    async register(email, password, rePassword) {
 
-        const user = await User.findOne({ $or: [{ email }, { name }] });
+        const user = await User.findOne({ $or: [{ email }] });
 
         if (password !== rePassword) {
             throw new Error('Passwords must match!');
@@ -13,7 +13,7 @@ const userService = {
         if (user) {
             throw new Error('User is already registered');
         }
-        const newUser = await User.create({ name, email, password });
+        const newUser = await User.create({ email, password });
 
         return generateResponse(newUser)
     },
@@ -33,8 +33,8 @@ const userService = {
 
     async updateProfile(id, name, email) {
 
-        await User.findByIdAndUpdate(id, { name, email})
-        return;        
+        await User.findByIdAndUpdate(id, { name, email })
+        return;
     },
     async getUser(id) {
 

@@ -5,7 +5,7 @@ const fragranceController = Router();
 
 // /fragrances
 fragranceController.get('/', async (req, res) => {
-
+    console.log(req)
     const fragrances = await fragranceService.getAll().lean();
 
     res.status(200).json(fragrances);

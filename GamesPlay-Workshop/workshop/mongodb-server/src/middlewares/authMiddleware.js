@@ -2,9 +2,8 @@ import jwt from "jsonwebtoken"
 import { AUTH_COOKIE_NAME } from "../constants.js";
 
 export const authMiddleware = (req, res, next) => {
-    const token = req.cookies[AUTH_COOKIE_NAME];
-    // const token = req.header('X-Authorization')
-    // console.log(req.cookies[AUTH_COOKIE_NAME])
+    // const token = req.cookies[AUTH_COOKIE_NAME];
+    const token = req.header('X-Authorization')
     if (!token) {
         return next();
     }
