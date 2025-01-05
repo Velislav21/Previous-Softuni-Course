@@ -5,6 +5,5 @@ export const getAccessToken = () => {
         return '';
     }
     const authData = JSON.parse(authJSON);
-    console.log(authData)
     return authData?.accessToken;
 }

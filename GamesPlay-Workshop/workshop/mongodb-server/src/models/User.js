@@ -3,12 +3,6 @@ import bcrypt from 'bcrypt';
 import { SALT_ROUNDS } from '../constants.js';
 
 const userSchema = new Schema({
-    name: {
-        type: String,
-        // required: [true, 'Name is required'],
-        // minLength: 2,
-        // maxLenght: 20
-    },
     email: {
         type: String,
         // required: [true, 'Email is required'],
@@ -21,9 +15,10 @@ const userSchema = new Schema({
     }
 })
 
-userSchema.pre('save', function () {
-
-    const hash = bcrypt.hash(this.password, SALT_ROUNDS);
+userSchema.pre('save', async function () {
+    console.log('test')
+    const hash = await bcrypt.hash(this.password, SALT_ROUNDS);
+    // !It's a BAIT! withouit awaiting it, it won't hash the password in the db
 
     this.password = hash;
 })

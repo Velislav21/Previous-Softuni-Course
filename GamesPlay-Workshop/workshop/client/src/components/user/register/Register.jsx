@@ -13,8 +13,7 @@ export default function Register() {
     const registerHandler = async (values) => {
 
         try {
-
-            await register(values.email, values.password);
+            await register(values.email, values.password, values.rePassword);
             navigate('/');
 
         } catch (err) {

@@ -5,7 +5,7 @@ import User from '../models/User.js'
 const userService = {
     async register(email, password, rePassword) {
 
-        const user = await User.findOne({ $or: [{ email }] });
+        const user = await User.findOne({ email });
 
         if (password !== rePassword) {
             throw new Error('Passwords must match!');
@@ -50,7 +50,6 @@ async function generateResponse(user) {
     const payload = {
         _id: user._id,
         email: user.email,
-        name: user.name,
     }
 
     const header = { expiresIn: '2h' };
@@ -58,7 +57,6 @@ async function generateResponse(user) {
     const token = await jwt.sign(payload, process.env.JWT_SECRET, header)
     return {
         _id: user._id,
-        name: user.name,
         email: user.email,
         accessToken: token
     }
