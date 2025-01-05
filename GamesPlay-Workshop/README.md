@@ -32,5 +32,6 @@ This is kind of a playground project. I begin implementing functionalities as i 
   - [x] Api function - getOne
   - [x] Api function - getAll
   - [x] Api function - createGame
+  - [x] Api function - UpdateGame
   - [x] Api function - deleteGame
 - [x] Home - Latest Games
