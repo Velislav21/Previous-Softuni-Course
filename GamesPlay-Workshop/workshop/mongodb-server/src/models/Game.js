@@ -24,10 +24,10 @@ const gamesSchema = new Schema({
     summary : {
         type: String,
     },
-    // owner: {
-    //     type: Types.ObjectId,
-    //     ref: 'User'
-    // }
+    owner: {
+        type: Types.ObjectId,
+        ref: 'User'
+    }
 })
 
 const Game = model('Game', gamesSchema)

@@ -15,7 +15,7 @@ const getOne = async (gameId) => {
 };
 
 const createGame = async (gameData) => {
-    const response = await request.post(`${baseUrl}`, gameData);
+    const response = await request.post(`${baseUrl}/create`, gameData);
     return response;
 };
 

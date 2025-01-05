@@ -20,14 +20,12 @@ gamesController.get('/:gameId/details', async (req, res) => {
 })
 
 gamesController.post('/create', async (req, res) => {
-    console.log(req)
-    console.log(req.body)
-    // const ownerId = req.user._id;
+    const ownerId = req.user._id;
     const gameData = req.body;
-
-    // console.log(ownerId, fragranceData)
+    
+    console.log(ownerId)
     try {
-        const game = await gamesService.create(gameData)
+        const game = await gamesService.create(gameData, ownerId)
         res.status(200).json(game)
     } catch (err) {
         const error = getError(err);

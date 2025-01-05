@@ -13,12 +13,10 @@ const gamesService = {
     getOne(gameId) {
         return Game.findById(gameId);
     },
-    create(gameData) {
-        return Game.create({ ...gameData });
+
+    create(gameData, ownerId) {
+        return Game.create({ ...gameData, owner: ownerId });
     },
-    // create(gameData, ownerId) {
-    //     return Game.create({ ...gameData, owner: ownerId });
-    // },
 
     remove(gameId) {
         return Game.findByIdAndDelete(gameId);
