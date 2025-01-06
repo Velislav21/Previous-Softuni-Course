@@ -5,7 +5,7 @@ export async function requester(method, url, data) {
     const options = {};
 
     const accessToken = getAccessToken();
-
+    console.log(`From requester.js`, accessToken)
     if (accessToken) {
         options.headers = {
             ...options.headers,

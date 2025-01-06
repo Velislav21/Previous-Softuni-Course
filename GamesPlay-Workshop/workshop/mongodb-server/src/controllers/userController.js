@@ -25,7 +25,6 @@ userController.post('/login', async (req, res) => {
     try {
         const response = await userService.login(email, password);
         res.status(200).json(response)
-        console.log(req.user)
 
 
     } catch (err) {
@@ -36,18 +35,16 @@ userController.post('/login', async (req, res) => {
 })
 
 userController.get('/profile', async (req, res) => {
-    
+    // !TODO: as of now, the get profile functionality doesn't really work as expected.
     const user = req.user;
-    // const token = req.cookies[AUTH_COOKIE_NAME];
-    const token = req.headers
+    // const token = req.header('X-Authorizaiton')
     try {
-        if (token) {
-            user.accessToken = token;
-        }
+        // user.accessToken = token;
+        console.log(user)
         res.status(200).json(user)
 
     } catch (err) {
-        res.status(401).json({ "Data": "no user, invalid token" })
+        res.status(401).send({ "Data": "no user, invalid token" })
     }
 })
 

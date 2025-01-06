@@ -2,6 +2,7 @@ import { useContext } from 'react'
 import { Link } from 'react-router-dom'
 
 import { AuthContext } from '../../contexts/authContext'
+import { getProfile } from '../../api/auth-api'
 
 export default function Header() {
     const { isAuthenticated } = useContext(AuthContext)
@@ -23,6 +24,10 @@ export default function Header() {
                         <Link to="/register">Register</Link>
                     </div>
                 }
+                <p onClick={async () => {
+                    const profile = await getProfile();
+                    console.log(profile)
+                }} to="/profile">Profile</p>
             </nav>
         </header>
     )
