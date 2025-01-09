@@ -5,7 +5,7 @@ export async function requester(method, url, data) {
     const options = {};
 
     const accessToken = getAccessToken();
-    console.log(`From requester.js`, accessToken)
+    // console.log(`From requester.js`, accessToken)
     if (accessToken) {
         options.headers = {
             ...options.headers,
@@ -28,6 +28,11 @@ export async function requester(method, url, data) {
 
     try {
         const response = await fetch(url, options)
+
+        if (response.status === 204) {
+            return
+        }
+
         const result = await response.json();
         return result;
 

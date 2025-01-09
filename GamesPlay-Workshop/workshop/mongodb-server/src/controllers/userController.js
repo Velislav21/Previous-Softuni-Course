@@ -63,10 +63,11 @@ userController.put('/profile', async (req, res) => {
 
 userController.post('/logout', (req, res) => {
     try {
-        res.clearCookie(AUTH_TOKEN_NAME).status(204).send({ message: 'Cookie cleared' })
-
+        // res.clearCookie(AUTH_TOKEN_NAME).status(204).send({ message: 'Cookie cleared' })
+        res.removeHeader('X-Authorization')
+        res.status(204).end();
+        return
     } catch (err) {
-        console.log('error')
         console.log(err)
     }
 })

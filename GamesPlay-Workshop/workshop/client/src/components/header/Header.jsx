@@ -15,7 +15,7 @@ export default function Header() {
                 {isAuthenticated ?
                     <div id="user">
                         <Link to="/games/create">Create Game</Link>
-                        <Link to="#">Logout</Link>
+                        <Link to="/logout">Logout</Link>
                     </div>
                     :
 
@@ -24,6 +24,7 @@ export default function Header() {
                         <Link to="/register">Register</Link>
                     </div>
                 }
+                {/* //! Quick dirty solution */}
                 <p onClick={async () => {
                     const profile = await getProfile();
                     console.log(profile)
