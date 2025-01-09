@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import { Route, Routes } from 'react-router-dom'
 
 import { AuthContextProvider } from './contexts/authContext'
@@ -11,6 +10,8 @@ import GamesList from './components/games/GamesList'
 import GameDetails from './components/games/GameDetails'
 import GameEdit from './components/games/GameEdit'
 import Logout from './components/user/logout/Logout'
+import { LoggedInUser } from './components/route-guards/LoggedInUser'
+import { GuestUser } from './components/route-guards/GuestUser'
 
 function App() {
     return (
@@ -20,13 +21,20 @@ function App() {
                 <main id="main-content">
                     <Routes>
                         <Route path={'/'} element={<Home />} />
-                        <Route path={'/login'} element={<Login />} />
-                        <Route path={'/register'} element={<Register />} />
-                        <Route path={'/logout'} element={<Logout />} />
+
+                        <Route element={<GuestUser />}>
+                            <Route path={'/login'} element={<Login />} />
+                            <Route path={'/register'} element={<Register />} />
+                        </Route>
+
                         <Route path={'/games'} element={<GamesList />} />
-                        <Route path={'/games/create'} element={<GameCreate />} />
                         <Route path={'/games/:gameId/details'} element={<GameDetails />} />
-                        <Route path={'/games/:gameId/edit'} element={<GameEdit />} />
+                        
+                        <Route element={<LoggedInUser />}>
+                            <Route path={'/games/create'} element={<GameCreate />} />
+                            <Route path={'/games/:gameId/edit'} element={<GameEdit />} />
+                            <Route path={'/logout'} element={<Logout />} />
+                        </Route>
                     </Routes>
                 </main>
             </div>
