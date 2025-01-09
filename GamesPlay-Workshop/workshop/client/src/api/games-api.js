@@ -24,7 +24,7 @@ const deleteGame = async (gameId) => {
 }
 
 const updateGame = async (gameId, gameData) => {
-    return await request.put(`${baseUrl}/${gameId}`, gameData);
+    return await request.put(`${baseUrl}/${gameId}/edit`, gameData);
 }
 
 const gamesAPI = {

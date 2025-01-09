@@ -1,5 +1,6 @@
 import { useParams, useNavigate } from "react-router-dom"
-import { useState, useEffect } from "react";
+import useForm from "../../hooks/useForm";
+import { useGetOneGame } from "../../hooks/useGames";
 import gamesAPI from "../../api/games-api";
 
 export default function GameEdit() {
@@ -7,59 +8,37 @@ export default function GameEdit() {
     const navigate = useNavigate();
     const { gameId } = useParams();
 
-    const [inputs, setInputs] = useState({
-        title: '',
-        category: '',
-        levels: '',
-        imageUrl: '',
-        summary: ''
-    });
+    const [game] = useGetOneGame(gameId)
 
-    useEffect(() => {
+    const editGameHandler = async (values) => {
 
-        (async () => {
-            const game = await gamesAPI.getOne(gameId);
-            console.log(game)
-            setInputs(game);
-        })()
-    }, [])
-
-    const handleInputChange = (e) => {
-
-        const { name, value } = e.target;
-
-        setInputs((prevFormData) => ({
-            ...prevFormData,
-            [name]: value
-        }))
-    }
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        await gamesAPI.updateGame(gameId, inputs)
+        await gamesAPI.updateGame(gameId, values)
         navigate(`/games/${gameId}/details`)
     }
+    const { values, changeHandler, submitHandler} = useForm(game, editGameHandler)
+
+
 
     return (
         <section id="edit-page" className="auth">
-            <form id="edit" onSubmit={handleSubmit}>
+            <form id="edit" onSubmit={submitHandler}>
                 <div className="container">
 
                     <h1>Edit Game</h1>
                     <label htmlFor="leg-title">Legendary title:</label>
-                    <input type="text" id="title" name="title" value={inputs.title} onChange={handleInputChange} />
+                    <input type="text" id="title" name="title" value={values.title} onChange={changeHandler} />
 
                     <label htmlFor="category">Category:</label>
-                    <input type="text" id="category" name="category" value={inputs.category} onChange={handleInputChange} />
+                    <input type="text" id="category" name="category" value={values.category} onChange={changeHandler} />
 
                     <label htmlFor="levels">MaxLevel:</label>
-                    <input type="number" id="levels" name="levels" min="1" value={inputs.levels} onChange={handleInputChange} />
+                    <input type="number" id="levels" name="levels" min="1" value={values.levels} onChange={changeHandler} />
 
                     <label htmlFor="game-img">Image:</label>
-                    <input type="text" id="imageUrl" name="imageUrl" value={inputs.imageUrl} onChange={handleInputChange} />
+                    <input type="text" id="imageUrl" name="imageUrl" value={values.imageUrl} onChange={changeHandler} />
 
                     <label htmlFor="summary">Summary:</label>
-                    <textarea name="summary" id="summary" value={inputs.summary} onChange={handleInputChange}></textarea>
+                    <textarea name="summary" id="summary" value={values.summary} onChange={changeHandler}></textarea>
                     <input className="btn submit" type="submit" value="Edit Game" />
 
                 </div>

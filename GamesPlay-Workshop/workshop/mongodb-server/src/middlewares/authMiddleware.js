@@ -12,7 +12,6 @@ export const authMiddleware = (req, res, next) => {
         const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
         req.user = decodedToken;
         req.isAuthenticated = true;
-
         next();
     } catch (err) {
         console.log(err.message)

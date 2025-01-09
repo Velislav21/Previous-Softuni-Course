@@ -1,13 +1,17 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function useForm(initialValues, submitCallback) {
 
-    const [values, setValues] = useState(initialValues)  
+    const [values, setValues] = useState(initialValues);
+
+    useEffect(() => {
+        setValues(initialValues)
+    }, [initialValues])
 
     const changeHandler = (e) => {
 
         const { name, value } = e.target;
-        
+
         // ! add support for checkboxes !!
         setValues((preValues) => ({
             ...preValues,
@@ -15,10 +19,9 @@ export default function useForm(initialValues, submitCallback) {
         }))
     }
 
-    const submitHandler = (e) => {
+    const submitHandler = async (e) => {
         e.preventDefault();
-        submitCallback(values)
-        // console.log(values)
+        await submitCallback(values)
     }
 
     return {
