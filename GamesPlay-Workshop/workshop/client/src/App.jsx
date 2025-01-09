@@ -10,8 +10,8 @@ import GamesList from './components/games/GamesList'
 import GameDetails from './components/games/GameDetails'
 import GameEdit from './components/games/GameEdit'
 import Logout from './components/user/logout/Logout'
-import { LoggedInUser } from './components/route-guards/LoggedInUser'
-import { GuestUser } from './components/route-guards/GuestUser'
+import LoggedInUser from './components/route-guards/LoggedInUser'
+import GuestUser from './components/route-guards/GuestUser'
 
 function App() {
     return (
@@ -29,7 +29,7 @@ function App() {
 
                         <Route path={'/games'} element={<GamesList />} />
                         <Route path={'/games/:gameId/details'} element={<GameDetails />} />
-                        
+
                         <Route element={<LoggedInUser />}>
                             <Route path={'/games/create'} element={<GameCreate />} />
                             <Route path={'/games/:gameId/edit'} element={<GameEdit />} />

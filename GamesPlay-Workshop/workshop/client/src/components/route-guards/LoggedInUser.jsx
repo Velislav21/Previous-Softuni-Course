@@ -2,15 +2,11 @@ import { useContext } from "react";
 import { Outlet, Navigate } from "react-router-dom"
 import { AuthContext } from "../../contexts/authContext";
 
-export const LoggedInUser = (children) => {
+export default function LoggedInUser() {
 
     const { isAuthenticated } = useContext(AuthContext);
 
-    if (!isAuthenticated) {
-        return <Navigate to='/login' />
-    }
-
-    return (
-        <Outlet value={children} />
-    )
+    return isAuthenticated
+        ? <Outlet />
+        : <Navigate to='/login' />
 }
