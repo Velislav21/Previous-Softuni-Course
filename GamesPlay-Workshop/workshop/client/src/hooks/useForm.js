@@ -5,8 +5,9 @@ export default function useForm(initialValues, submitCallback) {
     const [values, setValues] = useState(initialValues);
 
     useEffect(() => {
+        console.log('triggered')
         setValues(initialValues)
-    }, [initialValues])
+    }, [initialValues]) 
 
     const changeHandler = (e) => {
 
@@ -22,6 +23,8 @@ export default function useForm(initialValues, submitCallback) {
     const submitHandler = async (e) => {
         e.preventDefault();
         await submitCallback(values)
+
+        setValues(initialValues)
     }
 
     return {

@@ -2,8 +2,11 @@ import { Link, useParams } from "react-router-dom"
 
 import gamesAPI from '../../api/games-api.js'
 import { useGetOneGame } from "../../hooks/useGames.js";
+import { useContext } from "react";
+import { AuthContext } from "../../contexts/authContext.jsx";
 
 export default function GameDetails() {
+    const { _id } = useContext(AuthContext)
 
     const { gameId } = useParams();
 
@@ -12,6 +15,8 @@ export default function GameDetails() {
     const handleDeleteGame = async (gameId) => {
         await gamesAPI.deleteGame(gameId)
     }
+
+    const isOwner = game.owner === _id;
 
     return (
         <section id="game-details">
@@ -41,11 +46,12 @@ export default function GameDetails() {
                     </ul>
                     <p className="no-comment">No comments.</p>
                 </div>
-
-                <div className="buttons">
-                    <Link to={`/games/${gameId}/edit`} className="button">Edit</Link>
-                    <Link to="/" className="button" onClick={() => handleDeleteGame(gameId)}>Delete</Link>
-                </div>
+                {isOwner &&
+                    <div className="buttons">
+                        <Link to={`/games/${gameId}/edit`} className="button">Edit</Link>
+                        <Link to="/" className="button" onClick={() => handleDeleteGame(gameId)}>Delete</Link>
+                    </div>
+                }
             </div>
 
             <article className="create-comment">

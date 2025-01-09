@@ -2,6 +2,8 @@ import { Link, useNavigate } from 'react-router-dom'
 import useForm from '../../../hooks/useForm'
 import { useLogin } from '../../../hooks/useAuth'
 
+const initialValues = { email: '', password: ''}
+
 export default function Login() {
     const navigate = useNavigate();
     const login = useLogin();
@@ -15,7 +17,7 @@ export default function Login() {
         }
     }
 
-    const { values, changeHandler, submitHandler } = useForm({ email: '', password: '' }, loginHandler)
+    const { values, changeHandler, submitHandler } = useForm(initialValues, loginHandler)
 
     return (
 

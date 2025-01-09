@@ -20,7 +20,7 @@ const createGame = async (gameData) => {
 };
 
 const deleteGame = async (gameId) => {
-    return await request.del(`${baseUrl}/${gameId}`)
+    return await request.del(`${baseUrl}/${gameId}/delete`)
 }
 
 const updateGame = async (gameId, gameData) => {

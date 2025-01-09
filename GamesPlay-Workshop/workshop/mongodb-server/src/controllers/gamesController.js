@@ -47,4 +47,16 @@ gamesController.put('/:gameId/edit', async (req, res) => {
         res.status(400).json({ message: error })
     }
 })
+
+gamesController.delete('/:gameId/delete', async (req, res) => {
+    const gameId = req.params.gameId;
+
+    try {
+        await gamesService.remove(gameId);
+        res.status(200)
+    } catch (err) {
+        const error = getError(err);
+        res.status(400).json({ message: error })
+    }
+}) 
 export default gamesController

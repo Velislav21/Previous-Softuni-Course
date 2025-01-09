@@ -9,7 +9,6 @@ export default function GameEdit() {
     const { gameId } = useParams();
 
     const [game] = useGetOneGame(gameId)
-
     const editGameHandler = async (values) => {
 
         await gamesAPI.updateGame(gameId, values)

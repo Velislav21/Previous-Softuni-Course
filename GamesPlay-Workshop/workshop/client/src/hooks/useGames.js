@@ -26,7 +26,7 @@ export function useGetOneGame(gameId) {
         summary: '',
         levels: '',
         imageUrl: '',
-        category: ''
+        category: '',
     });
 
     useEffect(() => {
