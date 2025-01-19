@@ -1,4 +1,5 @@
 # games-play-may-2024
+
 SoftUni React PRACTICE Course Project
 This is kind of a playground project. I begin implementing functionalities as i learn throughout the different lections. Most likely the majority of the code will be refactored at some point.
 
@@ -35,3 +36,18 @@ This is kind of a playground project. I begin implementing functionalities as i 
   - [x] Api function - UpdateGame
   - [x] Api function - deleteGame
 - [x] Home - Latest Games
+
+---
+
+How to run the app:
+
+1. open terminal for the server -> cd GamesPlay-Workshop/workshop/mongodb-server
+   1.1 npm i
+   1.2 npm run start / dev. If the server is running the following message is printed in the terminal
+   'Server is listening on http://localhost:3000
+   Db successfully connected'
+
+2. open another terminal for the client -> cd GamesPlay-Workshop/workshop/client
+  1.1 npm i
+  1.2 npm run dev
+
