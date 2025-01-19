@@ -42,13 +42,13 @@ This is kind of a playground project. I begin implementing functionalities as i 
 How to run the app:
 
 ## 1. open terminal for the server cd GamesPlay-Workshop/workshop/mongodb-server
-[x] cd GamesPlay-Workshop/workshop/mongodb-server 
-[x] npm i
-[x] npm run start / dev. If the server is running the following message is printed in the terminal
-[x] 'Server is listening on http://localhost:3000
-[x] Db successfully connected'
+- [x] cd GamesPlay-Workshop/workshop/mongodb-server 
+- [x] npm i
+- [x] npm run start / dev. If the server is running the following message is printed in the terminal
+- [x] 'Server is listening on http://localhost:3000
+- [x] Db successfully connected'
 
 ## 2. open another terminal for the client -> cd GamesPlay-Workshop/workshop/client
 
-[x] npm i
-[x] npm run dev
+- [x] npm i
+- [x] npm run dev
